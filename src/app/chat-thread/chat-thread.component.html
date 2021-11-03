@@ -1,14 +1,15 @@
-<div class="media conversation">
+<div class="card">
     
-    <img src="{{thread.avatarSrc}}" width=128px>
-    <div>
-        <h5 class="media-heading contact-name">
+    <div class="img-thumbnail card-img-top" style="background-image: url({{thread.avatarSrc}}); background-position: center; background-repeat: no-repeat; background-size: 128px;"  >
+    
+    <div class="card-body">
+        <p class="card-text">
             {{thread.name}}
             <span *ngIf="selected">&bull;</span>
-        </h5>
+        </p>
         <div>
             {{thread.messages[thread.messages.length - 1].text}}
         </div>
-        <a (click)="clicked($event)" class="div-link">Select</a>
+        <a (click)="clicked($event)" class="btn btn-primary">Select</a>
     </div>
 </div>

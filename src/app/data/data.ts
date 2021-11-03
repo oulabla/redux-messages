@@ -10,7 +10,7 @@ import { AppState } from "../app.reducer";
 import { getAllMessages } from "../thread/threads.reducer";
 
 // the person using the app is Juliet
-const me: User = {
+export  const me: User = {
     id: uuid(),
     isClient: true, // <-- notice we're specifying the client as this User
     name: 'Juliet',
@@ -41,7 +41,7 @@ const me: User = {
     avatarSrc: 'https://w7.pngwing.com/pngs/846/267/png-transparent-computer-icons-house-symbol-small-icons-angle-building-triangle-thumbnail.png'
   };
   
-  const tLadycap: Thread = {
+export const tLadycap: Thread = {
     id: 'tLadycap',
     name: ladycap.name,
     avatarSrc: ladycap.avatarSrc,

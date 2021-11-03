@@ -9,6 +9,7 @@ import { ChatThreadsComponent } from './chat-threads/chat-threads.component';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { appStoreProviders } from './app.store';
 import { ChatThreadComponent } from './chat-thread/chat-thread.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ChatThreadComponent } from './chat-thread/chat-thread.component';
     ChatNavBarComponent,
     ChatThreadsComponent,
     ChatWindowComponent,
-    ChatThreadComponent
+    ChatThreadComponent,
+    ChatMessageComponent
   ],
   imports: [
     BrowserModule,
