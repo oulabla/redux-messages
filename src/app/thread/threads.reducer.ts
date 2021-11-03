@@ -1,6 +1,9 @@
 import { Action } from "redux";
 import { Thread } from "./thread.model";
 import * as ThreadActions from './thread.actions';
+import { createSelector } from "reselect";
+import { AppState } from "../app.reducer";
+import { Message } from "../message/message.model";
 
 export interface ThreadsEntities {
     [id: string]: Thread;
@@ -75,3 +78,35 @@ export const ThreadsReducer = function(state: ThreadsState = initialState, actio
             return state;
     }
 }
+
+export const getThreadsState = (state : AppState ): ThreadsState => state.threads;
+
+export const getThreadEntities = createSelector(
+    getThreadsState,
+    (state: ThreadsState) => state.entities
+);
+
+export const getCurrentThread = createSelector(
+    getThreadEntities,
+    getThreadsState,
+    (entities: ThreadsEntities, state: ThreadsState) => state.currentThreadId ? entities[state.currentThreadId] : null
+);
+
+export const getAllThreads = createSelector(
+    getThreadEntities,
+    (entities: ThreadsEntities) => Object.keys(entities).map( (threadId) => entities[threadId] )
+)
+
+export const getUnreadMessagesCount = createSelector(
+    getAllThreads,
+    (threads: Thread[]) => threads.reduce(
+        (unreadCount: number, thread: Thread) => {
+            thread.messages.forEach((message: Message) => {
+                if(!message.isRead){
+                    ++unreadCount;
+                }
+            })
+            return unreadCount;
+        }, 0
+    )
+)
